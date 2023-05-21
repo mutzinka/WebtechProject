@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>User</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link  th:href="@{/css/stylez.css}" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" th:href="@{/fishing/index}">Fishing Farming</a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    <!-- Navbar Search-->
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+
+    </form>
+    <!-- Navbar-->
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" th:text="${param.username}"></a></li>
+
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" th:href="@{/fishing/index}">Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+
+
+
+                    <div >
+                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+
+                                   <img th:if="${user.getThumbnail()}" th:src="@{${user.getThumbnail()}} "  class="rounded-circle userPic" alt="..."/>
+                                    <img th:unless="${user.getThumbnail()}" th:src="@{/img/fishing1.svg} "  class="rounded-circle userPic" alt="..."/>
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <p th:text="${param.username}"></p>
+                                    <a class="nav-link " data-bs-target="#exampleModal" data-bs-toggle="modal"  type="button" id="btn-update">update profile</a>
+                                </nav>
+                                <a class="nav-link" th:href="@{/fishing/user_orders}">
+                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    orders
+                                </a>
+
+                        </nav>
+                    </div>
+
+            </div>
+            <div class="sb-sidenav-footer position-relative loggedIn ">
+                <div class="small">Logged in as: <p th:text="${param.username}"></p></div>
+
+            </div></div>
+        </nav>
+    </div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container">
+            <h3 class="h-25 mt-1 gridHeadingTitle "> Available Fishes  </h3>
+                <p th:text="${noFish}" th:class="error"></p>
+                <div class="row row-cols-4 ">
+
+                <div  th:each="fish:${fishes}" th:object="${user}">
+                    <div class="col row row-cols-1  border myCard" >
+                        <img th:src="@{${fish.getThumbnail()}}" class="rounded-circle imgProfile" alt="..." >
+                        <div >
+                            <h4 th:text="${fish.getName()}"></h4>
+                            <h5 th:text="${fish.price}"></h5>
+                            <a class="btn btn-primary innerBtn"  th:href="@{/fishing/user_orders(order=${fish.getId()}, action='buy',username=${user.username})}">add to chart</a>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+
+            </div>
+
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; FishFarming 2022</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+                        <button type="button" class="btn btn-close btn-close-danger btn-danger " data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form  th:action="@{/fishing/user/update}" th:object="${user}" method="post" enctype="multipart/form-data" >
+                        <div class="modal-body row row-cols-2">
+                            <div class="mb-3">
+                                <label for="firstName" class="col-form-label">First Name:</label>
+                                <input type="text"
+                                       name="firstName"
+                                       field="*{ firstName }"
+                                       th:value="${user.firstName}"
+                                       class="form-control"
+                                       id="firstName"
+                                />
+                                <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:errorClass="error"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="lastName" class="col-form-label">Last Name:</label>
+                                <input type="text"
+                                       name="lastName"
+                                       field="*{ lastName }"
+                                       th:value="${user.lastName}"
+                                       class="form-control"
+                                       id="lastName"
+                                />
+                                <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" th:errorClass="error"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="username" class="col-form-label">User Name:</label>
+                                <input type="text"
+                                       name="username"
+                                       field="*{ username }"
+                                       th:value="${user.username}"
+                                       class="form-control"
+                                       id="username"
+                                />
+                                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" th:errorClass="error"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="col-form-label">Email:</label>
+                                <input type="email"
+                                       name="email"
+                                       field="*{ email }"
+                                       th:value="${user.email}"
+                                       class="form-control"
+                                       id="email"
+                                />
+                                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorClass="error"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="col-form-label">Phone:</label>
+                                <input type="text"
+                                       name="phoneNumber"
+                                       field="*{ phoneNumber }"
+                                       th:value="${user.phoneNumber}"
+                                       class="form-control"
+                                       id="phone"
+                                />
+                                <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" th:errorClass="error"></p>
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="dob" class="col-form-label">Date of birth:</label>
+                                <input type="date"
+                                       name="dob"
+                                       field="*{ dob }"
+                                       th:value="${user.dob}"
+                                       class="form-control"
+                                       id="dob"
+                                />
+                                <p th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}" th:errorClass="error"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="col-form-label">Password:</label>
+                                <input type="password"
+                                       name="password"
+                                       field="*{ password }"
+                                       th:value="${user.password}"
+                                       class="form-control"
+                                       id="password"
+                                />
+                                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorClass="error"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="image" class="col-form-label">upload image:</label>
+                                <input type="file"
+                                       name="image"
+                                       field="*{image}"
+                                       th:value="${user.thumbnail}"
+                                       class="form-control"
+                                       id="image"
+                                       accept="image/*"
+                                />
+                                <p th:text="${image}" th:class="error"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="city" class="col-form-label">City:</label>
+                                <input type="text"
+                                       name="city"
+                                       field="*{city}"
+                                       th:value="${user.city}"
+                                       class="form-control"
+                                       id="city"
+                                />
+                                <p th:if="${#fields.hasErrors('city')}" th:errors="*{city}" th:errorClass="error"></p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="street" class="col-form-label">Street No:</label>
+                                <input type="text"
+                                       name="street"
+                                       field="*{street}"
+                                       th:value="${user.street}"
+                                       class="form-control"
+                                       id="street"
+                                />
+                                <p th:if="${#fields.hasErrors('street')}" th:errors="*{street}" th:errorClass="error"></p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">cancel</button>
+                            <button type="submit" class="btn btn-primary">save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script th:src="@{/js/scripts.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script th:src="@{/assets/demo/chart-area-demo.js}"></script>
+<script th:src="@{/assets/demo/chart-bar-demo.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script th:src="@{/js/datatables-simple-demo.js}"></script>
+</body>
+</html>

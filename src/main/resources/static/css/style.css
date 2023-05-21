@@ -1,0 +1,80 @@
+body::before{
+    display: block;
+    content: '';
+    height: 50px;
+}
+#map{
+    width:100%;
+    height: 100%;
+    border-radius: 10px;
+}
+@media(min-width:768px){
+    .news-input{
+        width: 50%;
+    }
+}
+
+.imgProfile{
+    margin-top: 10px;
+    width: 50em;
+    height: 15em;
+}
+.userPic{
+    width:10em;
+    height: 10em;
+}
+.myPagination {
+    position: relative;
+    left:5.5em;
+}
+.myPagination2{
+    position: relative;
+    left:3em;
+}
+.myCard{
+    margin-right:3em;
+    margin-bottom:3em;
+    padding:0 3em 3em 0;
+    width: 20em;
+}
+.coopCard {
+    width: 30em;
+    height: 17em;
+}
+.gridHeadingTitle{
+    position: relative;
+    left:3.1em;
+}
+.innerBtn {
+    margin-top:2em;
+    width:10em;
+}
+.coopBtn{
+    width:10em;
+}
+.loggedIn {
+    position: relative;
+    top:40.5em;
+}
+
+.error{
+    color:red;
+    font-style:italic;
+    font-size:13px;
+}
+
+.myOrder{
+    position: relative;
+    left:74em;
+    top:2.3em;
+}
+
+.report{
+    position: relative;
+    left:0.1em;
+    top:-0.5em;
+}
+.orders {
+    background:none;
+    border: none;
+}

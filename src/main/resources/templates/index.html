@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Option 1: Include in HTML -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<!--    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Fish Farming</title>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-light navbar-light py-3 fixed-top">
+    <div class="container">
+        <a href="#" class="navbar-brand">Fish Farming </a>
+        <!-- this button for toggling the hambuger -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- this is for allow ul to be collapse at certain size -->
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="#learn" class="nav-link">What we offer</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#questions" class="nav-link">Questions</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#instructors" class="nav-link">Cooperatives</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/fishing/user/login}" class="nav-link">Login</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<!-- Showcase -->
+<section class="bg-light text-dark p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
+    <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+                <h1>Enhance your <span class="text-warning">Fishing Farming</span> </h1>
+                <p class="lead my-4 w-50">
+                    we focus on helping our cooperatives, the fundamentals  and
+                    greatest technologies to make fishing more harvesting to them.
+                </p>
+                <button class="btn-secondary btn-lg " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Start Registering
+                </button>
+
+            </div>
+            <img class="img-fluid w-25 d-none d-sm-block" th:src="@{/img/fishing1.svg}" alt="no image">
+        </div>
+    </div>
+</section>
+
+<!-- Boxes -->
+
+<!-- Learn Section -->
+<section  class="p-5">
+    <div class="container">
+        <div class="row align-item-center justify-content-between">
+            <div class="col-md">
+                <img th:src="@{/img/fishing2.svg}" class="img-fluid" alt="">
+            </div>
+            <div class="col-md p-5">
+                <h2>Modern Fishing</h2>
+                <p class="lead">
+                    They are different Fishing techniques for catching fish.
+                </p>
+                <p>Fishing techniques include hand-gathering,spearfishing, netting,angling and trapping are being used by our cooperatives</p>
+                <a href="#" class="btn btn-light mt-3"> <i class="bi bi-chevron-right"></i> ReadMore</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="learn" class="p-5 bg-light text-dark">
+    <div class="container">
+        <div class="row align-item-center justify-content-between">
+
+            <div class="col-md p-5">
+                <h2 >Flesh Fish</h2>
+                <p class="lead">
+                    Fishes that you get exactly right after being fished, and they are likely to be loved
+                    by most of the client.
+
+                </p>
+                <p>Flesh Fish are mostly been caught in early in the morning before the sun rise since, it's where fishes are likely to be found</p>
+                <a href="#" class="btn btn-light text-dark mt-3"> <i class="bi bi-chevron-right"></i> ReadMore</a>
+            </div>
+            <div class="col-md">
+                <img th:src="@{/img/fishing.svg}" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Questions Accordion -->
+<section class="p-5" id="">
+    <div class="container">
+        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+        <div class="accordion accordion-flush" id="questions">
+            <!-- item 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Where exactly are you located?
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#questions">
+                    <div class="accordion-body">Thanks for asking, we are basically located  in Western province, Rubavu district, city of gisenyi</div>
+                </div>
+            </div>
+            <!-- item 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        How much does it cost?
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#questions">
+                    <div class="accordion-body">Well Costing it depends on fish type that a client is requesting to get. you can
+                    checkout once you are ordering.
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- item 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        What Do I need to know?
+                    </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#questions">
+                    <div class="accordion-body">All you need to know is that we are here to serve you and our platform it is really user-friendly to operate with.</div>
+                </div>
+            </div>
+            <!-- item 4 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                        What types of fish you mostly have ?
+                    </button>
+                </h2>
+                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#questions">
+                    <div class="accordion-body">
+                        Thanks for asking Most types we have are:
+                        <ul>
+                            <li>Fillet Fish</li>
+                            <li>Thompson Fish</li>
+                            <li>Nile Tilapia</li>
+                            <li>Barbus</li>
+                            <li>Tanganyika Sardine</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- item 5 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-callapseFive">
+                        How exactly to create a cooperative on your platform?
+                    </button>
+                </h2>
+                <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#questions">
+                    <div class="accordion-body">Creating an account on our platform it is fairly easy. just register your cooperative on the platform </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Instructors -->
+<section id="instructors" class="p-5 bg-secondary">
+    <div class="container">
+        <h2 class="text-center text-light">Our Cooperatives</h2>
+        <p class="lead text-center text-white mb-5">
+            We work with small, mid and big size cooperatives that are mainly located in Rubavu district
+        </p>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <img th:src="@{/img/coop1.jpg}" width="200" height="200" class="rounded-circle mb-3" alt="">
+                        <h3 class="card-title mb-3">Ubumwe coop</h3>
+                        <p class="card-text">Ubumwe a cooperative founded and initiated by Christian Churches located at Rubavu.</p>
+                        <a href="#"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-youtube text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <img th:src="@{/img/coop2.jpg}" width="200" height="200" class="rounded-circle mb-3" alt="">
+                        <h3 class="card-title mb-3">Ihaho coop</h3>
+                        <p class="card-text">Ihaho a cooperative that was found by women who united together to create a job that could lift them up.</p>
+                        <a href="#"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-youtube text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <img th:src="@{/img/coop3.jpg}" width="200" height="200"  class="rounded-circle mb-3" alt="">
+                        <h3 class="card-title mb-3">Iwacu coop</h3>
+                        <p class="card-text">Iwacu cooperative that is renowned by selling Fish on neighbouring countries market also.</p>
+                        <a href="#"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-youtube text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <img th:src="@{/img/coop4.jpg}"   width="200" height="200" class="rounded-circle mb-3" alt="">
+                        <h3 class="card-title mb-3">Umucyo coop</h3>
+                        <p class="card-text">Umucyo is a cooperative  mostly doing agriculture but decided also to invest in fish farming.</p>
+                        <a href="#"><i class="bi bi-twitter text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-facebook text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-instagram text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-youtube text-dark mx-1"></i></a>
+                        <a href="#"><i class="bi bi-linkedin text-dark mx-1"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contacts & Map-->
+<section class="p-5">
+    <div class="container">
+        <div class="row g-4 ">
+            <div class="col-md">
+                <h2 class="text-center mb-4">Contact Info</h2>
+                <ul class="list-group list-group-flush lead">
+                    <li class="list-group-item">
+                        <span class="fw-bold">Main Location:</span>KN191St
+                    </li>
+                    <li class="list-group-item">
+                        <span class="fw-bold">Register Phone:</span>(+250)7893-94104
+                    </li>
+                    <li class="list-group-item">
+                        <span class="fw-bold">Ordering Phone:</span>(+250)7812-1234
+                    </li>
+                    <li class="list-group-item">
+                        <span class="fw-bold">Email:</span>enroll@plc.com
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md">
+                <div id='map' style='width: 400px; height: 300px;'></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">User Registration</h5>
+                <button type="button" class="btn btn-close btn-close-danger btn-danger " data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/fishing/index/save}" th:object="${user}" method="post">
+                <div class="modal-body">
+                    <p class="lead">Fill out this form and we will get back to you</p>
+                    <div class="mb-3">
+                        <label for="first-name" class="col-form-label">First Name</label>
+                        <input type="text"
+                               name="firstName"
+                               field="*{ firstName }"
+                               class="form-control"
+                               id="first-name"
+                        />
+                    <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:errorClass="error"></p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="last-name" class="col-form-label">Last Name</label>
+                        <input type="text" class="form-control"
+                               name="lastName"
+                               field="*{lastName}"
+                               id="last-name"/>
+                        <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" th:errorClass="error"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="col-form-label">UserName</label>
+                        <input type="text" class="form-control"
+                               name="username"
+                               field="*{username}"
+                               id="username"/>
+                        <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" th:errorClass="error"></p>
+                        <p th:text="${usernames}"  th:class="error"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="col-form-label">Email</label>
+                        <input type="email" class="form-control"
+                               name="email"
+                               field="*{email}"
+                               id="email"/>
+                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorClass="error"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="col-form-label">Phone</label>
+                        <input type="text" class="form-control"
+                               name="phoneNumber"
+                               field="*{phoneNumber}"
+                               id="phone"/>
+                        <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" th:errorClass="error"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="col-form-label">Password</label>
+                        <input type="password" class="form-control"
+                               name="password"
+                               field="*{password}"
+                               id="password"/>
+                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorClass="error"></p>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<footer class="p-5 bg-light text-dark text-center position-relative">
+    <div class="container">
+        <p class="lead">
+            Copyrights &copy;  Fish Farming 2022
+        </p>
+        <a href="#" class="position-absolute bottom-0 end-0 p-5 text-secondary"> <i class="bi bi-arrow-up-circle h1"></i></a>
+    </div>
+
+</footer>
+
+<!-- modal -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoicGxhY2lkZWgiLCJhIjoiY2t4ajBocWZhNmFjejJwbGFtbzM1dWVidiJ9.foBOcr59h0T44-UAOqbt2Q';
+    var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center:[29.2549147,-1.6990671],
+    zoom:16
+    });
+    </script>
+</body>
+</html>
